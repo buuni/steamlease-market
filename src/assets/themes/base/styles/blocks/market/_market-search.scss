@@ -1,0 +1,27 @@
+.market-search {
+  .search-container {
+    padding: 20px;
+    display: block;
+    height: 70px;
+  }
+  .search-container input {
+    height: 35px;
+    border: 1px solid #dce0e2;
+    outline: none;
+  }
+
+  .search-button {
+    display: inline-block;
+    position: absolute;
+    height: 35px;
+    width: 35px;
+    right: 35px;
+    background: none;
+    border: none;
+    color: #dce0e2;
+  }
+
+  .search-wrapper {
+    margin-bottom: 30px;
+  }
+}

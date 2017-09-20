@@ -1,0 +1,48 @@
+.market-menu {
+  h3 {
+    font-family: 'Roboto', sans-serif;
+    display: block;
+    margin: 0;
+    padding: 20px 20px 0 20px;
+    font-weight: bold;
+    color: #333333;
+  }
+
+  .genre-list {
+    list-style: none;
+    padding: 20px 0;
+  }
+
+  .genre-list li {
+    border-bottom: 1px solid #dce0e2;
+    padding: 0 20px;
+  }
+
+  .genre-list li:first-child {
+    border-top: 1px solid #dce0e2;
+  }
+
+  .genre-list li:hover,
+  .genre-list li.active
+  {
+    background-color: #f7fbfa;
+  }
+
+  .genre-list li a {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 800;
+    width: 100%;
+    display: block;
+    height: 35px;
+    line-height: 2.5;
+    text-transform: uppercase;
+    color: #585858;
+    text-decoration: none;
+  }
+
+  .genre-list li:hover a,
+  .genre-list li.active a
+  {
+    color: #f64a35;
+  }
+}

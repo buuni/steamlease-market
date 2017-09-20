@@ -1,0 +1,16 @@
+<div class="col-sm-4 market-item-container">
+    <div class="market-item material-panel">
+        <div class="market-item-image">
+            <img src="{{ product.image }}" width="100%" alt="">
+        </div>
+        <div class="market-item-content">
+            <span class="market-item-title">{{ product.name }}</span>
+            <p>{{ product.description | truncate : 150 }}</p>
+            <div class="market-item-meta">
+                <span class="price">{{ product.price.convertToCurrentFormat() }} руб.</span>
+                <button *ngIf="!inTheCart" (click)="addToCartEvent()" class="btn btn-sm btn-success btn-add right" >Добавить</button>
+                <button *ngIf="inTheCart" (click)="removeFromCartEvent()" class="btn btn-sm btn-warning btn-add right" >Убрать</button>
+            </div>
+        </div>
+    </div>
+</div>

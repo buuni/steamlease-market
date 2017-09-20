@@ -1,0 +1,51 @@
+.logo img {
+  padding: 20px 10px 20px 0;
+}
+
+.account {
+  float: left;
+  width: 48px;
+}
+
+.account img {
+  width: 100%;
+  -webkit-box-shadow: 0 0 2px 0 rgba(30,38,44,.25);
+  box-shadow: 0 0 2px 0 rgba(30,38,44,.25);
+}
+
+.cart-container {
+  font-family: 'Roboto', sans-serif;
+  background: #fff;
+  padding: 10px 20px;
+  width: 87.5%;
+  float: left;
+  -webkit-box-shadow: 0 0 2px 0 rgba(30,38,44,.25);
+  box-shadow: 0 0 2px 0 rgba(30,38,44,.25);
+}
+
+.cart-button {
+  font-size: 20px;
+  padding-right: 10px;
+  color: #f64a35;
+  float: left;
+}
+
+.cart-button:hover {
+  color: #d64a35;
+}
+
+.cart-position {
+  line-height: 2;
+}
+
+.cart-position .price {
+  float: right;
+  display: inline;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.cart-position a {
+  color: #333;
+  text-decoration: none;
+}

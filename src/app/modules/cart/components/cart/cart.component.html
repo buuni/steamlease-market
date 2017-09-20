@@ -1,0 +1,14 @@
+<div class="cart-container">
+    <a href="#" class="cart-button"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+    <div *ngIf="products.length > 0; then thenBlock else elseBlock"></div>
+    <ng-template #thenBlock>
+        <div class="cart-position">
+            <a href="#">{{ products.length }} игры <span class="price">{{ getSum() }} руб.</span></a>
+        </div>
+    </ng-template>
+    <ng-template #elseBlock>
+        <div class="cart-position">
+            Корзина пустая
+        </div>
+    </ng-template>
+</div>

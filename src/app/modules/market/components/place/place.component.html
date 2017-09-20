@@ -1,0 +1,20 @@
+<div *ngIf="products.length && !isLoading; then thenBlock else elseBlock"></div>
+
+<ng-template #thenBlock>
+    <market-place-product *ngFor="let product of products" [product]="product"></market-place-product>
+</ng-template>
+
+
+<ng-template #elseBlock>
+
+    <div *ngIf="isLoading; then isLoadingBlock else emptyResultsBlock"></div>
+
+    <ng-template #isLoadingBlock>
+        <loading-component></loading-component>
+    </ng-template>
+
+    <ng-template #emptyResultsBlock>
+        <p>По вашему запросу ничего не найдено</p>
+    </ng-template>
+
+</ng-template>
