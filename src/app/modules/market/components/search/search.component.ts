@@ -14,6 +14,7 @@ export class SearchComponent implements OnInit {
 
     searchEvent() {
         this._filterService.productName = this.search;
+        this._filterService.page = null;
         this._filterService.perform();
     }
 

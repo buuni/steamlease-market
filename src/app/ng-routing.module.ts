@@ -20,10 +20,6 @@ const routes: Routes = [
             {
                 path: ':genre',
                 component: PlaceComponent,
-            },
-            {
-                path: 'foo',
-                component: MenuComponent
             }
         ]
     },

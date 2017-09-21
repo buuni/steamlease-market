@@ -10,6 +10,7 @@ import {RouterModule} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import {TruncatePipe} from "../../pipes/truncate.pipe";
 import {PaginationComponent} from "./components/place/components/pagination/pagination.component";
+import {BuildArrayPipe} from "../../pipes/buildArray.pipe";
 
 @NgModule({
     imports: [SharedModule, RouterModule, FormsModule],
@@ -23,7 +24,8 @@ import {PaginationComponent} from "./components/place/components/pagination/pagi
         SearchComponent,
         PaginationComponent,
         // Pipes
-        TruncatePipe
+        TruncatePipe,
+        BuildArrayPipe
     ],
     providers: [FilterService]
 })

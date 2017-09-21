@@ -1,7 +1,17 @@
 <div *ngIf="products.length && !isLoading; then thenBlock else elseBlock"></div>
 
 <ng-template #thenBlock>
-    <market-place-product *ngFor="let product of products" [product]="product"></market-place-product>
+    <div class="row">
+        <market-place-pagination></market-place-pagination>
+    </div>
+    <div class="row" *ngFor="let productsArray of products | buildArray:3">
+        <market-place-product [product]="productsArray[0]"></market-place-product>
+        <market-place-product *ngIf="productsArray[1]" [product]="productsArray[1]"></market-place-product>
+        <market-place-product *ngIf="productsArray[2]" [product]="productsArray[2]"></market-place-product>
+    </div>
+    <div class="row">
+        <market-place-pagination></market-place-pagination>
+    </div>
 </ng-template>
 
 
@@ -14,7 +24,13 @@
     </ng-template>
 
     <ng-template #emptyResultsBlock>
-        <p>По вашему запросу ничего не найдено</p>
+        <div class="row">
+            <div class="col-sm-12 market-place-not-found">
+                <div class="material-panel">
+                    <p>По вашему запросу ничего не найдено</p>
+                </div>
+            </div>
+        </div>
     </ng-template>
 
 </ng-template>
