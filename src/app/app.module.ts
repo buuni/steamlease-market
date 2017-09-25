@@ -1,6 +1,5 @@
 ///<reference path="modules/market/market.module.ts"/>
 
-import {ProductService} from "./services/product.service";
 
 require("style-loader!../assets/base.scss");
 
@@ -14,6 +13,9 @@ import {CartService} from "./services/cart.service";
 import {HttpModule} from "@angular/http";
 import {CartModule} from "./modules/cart/cart.module";
 import {TruncatePipe} from "./pipes/truncate.pipe";
+import {BuildArrayPipe} from "./pipes/buildArray.pipe";
+import {CookieService} from "ngx-cookie-service";
+import {ProductService} from "./services/product.service";
 
 
 export class MyHammerConfig extends HammerGestureConfig  {
@@ -36,6 +38,7 @@ export class MyHammerConfig extends HammerGestureConfig  {
     providers: [
         ProductService,
         CartService,
+        CookieService
     ],
     bootstrap: [
         AppComponent
@@ -45,7 +48,9 @@ export class MyHammerConfig extends HammerGestureConfig  {
 export class AppModule {
     constructor(public appRef: ApplicationRef) {}
     hmrOnInit(store) {
-        if (!store || !store.state) return;
+        if (!store || !store.state) {
+            return;
+        }
 
         if ('restoreInputValues' in store) {
             store.restoreInputValues();

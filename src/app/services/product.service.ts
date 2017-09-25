@@ -8,6 +8,7 @@ import "rxjs/Rx";
 import "rxjs/add/operator/map";
 import {Subject} from "rxjs/Subject";
 import {Subscription} from "rxjs/Subscription";
+import {privateDecrypt} from "crypto";
 
 @Injectable()
 export class ProductService {
@@ -15,26 +16,46 @@ export class ProductService {
 
     private _loadedProducts: Product[];
 
-    constructor(private http: Http) {
+    constructor(private _http: Http) {
         this._loadedProducts = [];
     }
 
     loadProductsByFilters(filterService: FilterService) : Promise<Product[]> {
-        return this.http.get(this._apiUrl + '/apps', {search: filterService.getSearchParams()})
+        return this._http.get(this._apiUrl + '/apps', {search: filterService.getSearchParams()})
             .toPromise()
-            .then((res: Response) => this._parseProductsData(res.json() as Array<any>));
+            .then((res: Response) => {
+                return this._parseProducts(res.json() as Array<any>);
+            });
     }
 
-    private _parseProductsData(data: Array<any>) : Product[] {
-        // Создаем экземпляры только несуществующих продуктов
-        return data.map(value => {
-            let product: Product;
-            if(!(product = this._loadedProducts.find(pr => pr.id === value.id))) {
-                product = Product.fromJson(value);
-                this._loadedProducts.push(product);
-            }
+    private _parseProducts(data: Array<any>) : Product[] {
+        return data.map(value => this._parseProduct(value));
+    }
 
-            return product;
-        });
+    hasProductById(id: number) : boolean | Product {
+        return this._loadedProducts.find(product => product.id === id) || false;
+    }
+
+    loadProductById(id: number) : Promise<Product> {
+        let product;
+
+        if((product = this.hasProductById(id))) {
+            return Promise.resolve(product);
+        }
+
+        return this._http.get(this._apiUrl + '/app/' + id)
+            .toPromise()
+            .then((res: Response) => this._parseProduct((res.json() as Array<any>)[0]));
+    }
+
+    private _parseProduct(data: any) : Product {
+        let product;
+        // Создаем экземпляры только несуществующих продуктов
+        if(!(product = this.hasProductById(data.id))) {
+            product = Product.fromJson(data);
+            this._loadedProducts.push(product);
+        }
+
+        return product;
     }
 }

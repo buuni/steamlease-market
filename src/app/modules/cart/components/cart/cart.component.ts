@@ -10,13 +10,17 @@ export class CartComponent implements OnInit {
 
     products: Product[] = [];
 
-    constructor(private cartService: CartService) {}
-
-    ngOnInit(): void {
-        this.products = this.cartService.products;
+    get isLoading() : boolean {
+        return this._cartService.isLoadingCartProducts;
     }
 
-    getSum(): Number {
-        return this.products.reduce<Number>((previousValue, next) => (previousValue as number) + next.price.value, 0);
+    constructor(private _cartService: CartService) {}
+
+    get totalSum() : Number {
+        return this._cartService.totalSum();
+    }
+
+    ngOnInit(): void {
+        this.products = this._cartService.products;
     }
 }

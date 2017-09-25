@@ -16,6 +16,6 @@ if (process.env.STATIC) {
 
 export function main() {
     return platformBrowserDynamic()
-        .bootstrapModule(AppModule)
+        .bootstrapModule(AppModule);
 }
 

@@ -1,34 +1,86 @@
 import {Injectable} from "@angular/core";
 import {Product} from "../models/market/Product";
+import {CookieService} from "ngx-cookie-service";
+import {ProductService} from "./product.service";
+import {Data} from "@angular/router";
 
 @Injectable()
 export class CartService {
     private _products: Product[] = [];
+    private _totalLoadingProducts: number;
 
-    get products() : Product[] {
+    get isLoadingCartProducts(): boolean {
+        return this._totalLoadingProducts !== 0;
+    }
+
+    get products(): Product[] {
         return this._products;
     }
 
-    constructor() {
+    constructor(private _cookieService: CookieService, private _productService: ProductService) {
+        let cookieProducts = this._cookiesProducts();
+        this._totalLoadingProducts = cookieProducts.length;
+
+        cookieProducts.forEach(id => {
+            _productService.loadProductById(id).then(product => {
+                this._totalLoadingProducts--;
+                this.addProduct(product);
+            });
+        });
     }
 
-    addProduct(product : Product) : void {
+    addProduct(product: Product): void {
+        this._addCookiesProduct(product.id);
         this._products.push(product);
     }
 
-    removeProduct(product: Product) : void {
+    removeProduct(product: Product): void {
         const index = this._products.indexOf(product);
         this.removeProductByIndex(index);
     }
 
-    removeProductByIndex(index: number) : void {
-        if(this._products[index]) {
+    removeProductByIndex(index: number): void {
+        if (this._products[index]) {
+            this._removeCookiesProduct(this._products[index].id);
             this._products.splice(index, 1);
         }
     }
 
-    inTheCart(product: Product) {
-        return this._products.indexOf(product) !== -1 ;
+    totalSum(): Number {
+        return this._products.reduce<Number>((previousValue, next) => (previousValue as number) + next.price.value, 0);
     }
 
+    inTheCart(product: Product) {
+        return this._products.indexOf(product) !== -1;
+    }
+
+    private _addCookiesProduct(id: number) {
+        let cookiesProducts = this._cookiesProducts();
+        if (!cookiesProducts.find(_id => id === _id)) {
+            cookiesProducts.push(id);
+            this._saveCookiesProducts(cookiesProducts);
+        }
+    }
+
+    private _removeCookiesProduct(id: number) {
+        let cookiesProducts = this._cookiesProducts();
+        let index: number;
+        if ((index = cookiesProducts.indexOf(id)) !== -1) {
+            cookiesProducts.splice(index, 1);
+            this._saveCookiesProducts(cookiesProducts);
+        }
+    }
+
+    private _cookiesProducts(): Array<number> {
+        return this._cookieService.check('cart') ? JSON.parse(this._cookieService.get('cart')) : [];
+    }
+
+    private _saveCookiesProducts(products: Array<number>) {
+        this._cookieService.set(
+            'cart',
+            JSON.stringify(products),
+            new Date(Date.now() + (60 * 60 * 24 * 7 * 1000)),
+            '/'
+        );
+    }
 }

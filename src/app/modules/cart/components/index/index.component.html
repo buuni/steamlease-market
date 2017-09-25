@@ -1,0 +1,19 @@
+<div class="market-wrapper">
+    <div class="material-panel">
+        <div class="col-sm-12">
+            <div *ngIf="products.length > 0; then thenBlock else elseBlock"></div>
+            <ng-template #thenBlock>
+                <div class="row">
+                    <div *ngFor="let product of products">
+                        <cart-product [product]="product"></cart-product>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template #elseBlock>
+                <div class="row">
+                    Корзина пустая
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>

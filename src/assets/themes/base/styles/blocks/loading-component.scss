@@ -1,7 +1,12 @@
 .loading-component {
     img {
         display: block;
-        margin: 0 auto;
-        width: 200px;
+        float: left;
+    }
+
+    p {
+        font-size: 13px;
+        color: rgba(0, 0, 0, 0.54);
+        line-height: 2.2;
     }
 }

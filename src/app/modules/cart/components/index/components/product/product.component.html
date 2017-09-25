@@ -1,0 +1,14 @@
+<div class="col-sm-12 market-item-container">
+    <div class="market-item material-panel">
+        <div class="market-item-image">
+            <img src="{{ product.image }}" width="100%" alt="">
+        </div>
+        <div class="market-item-content">
+            <span class="market-item-title">{{ product.name }}</span>
+            <p>{{ product.description }}</p>
+            <div class="market-item-meta">
+                <span class="price">{{ product.price.convertToCurrentFormat() }} руб.</span>
+            </div>
+        </div>
+    </div>
+</div>

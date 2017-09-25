@@ -13,23 +13,9 @@ export class Product {
         return 'http://cdn.akamai.steamstatic.com/steam/apps/' + this.steamId + '/header.jpg';
     }
 
-    get shortDescription() : string {
-        if(this._shortDescription === null) {
-            if (this.description.length > 150) {
-                this._shortDescription = this.description.slice(0, 146) + ' ...';
-            } else {
-                this._shortDescription = this.description;
-            }
-        }
-
-        return this._shortDescription;
-    }
-
-    private _shortDescription: string = null;
-
     static fromJson(data: any) {
         const product = new Product();
-        data = typeof data != "object" ? JSON.parse(data) : data;
+        data = typeof data !== "object" ? JSON.parse(data) : data;
 
         product.name = data.name;
         product.id = data.id;

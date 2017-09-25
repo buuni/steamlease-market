@@ -23,7 +23,6 @@ import {BuildArrayPipe} from "../../pipes/buildArray.pipe";
         ProductComponent,
         SearchComponent,
         PaginationComponent,
-        // Pipes
         TruncatePipe,
         BuildArrayPipe
     ],
