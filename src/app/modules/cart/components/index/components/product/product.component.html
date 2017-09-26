@@ -1,14 +1,26 @@
-<div class="col-sm-12 market-item-container">
-    <div class="market-item material-panel">
-        <div class="market-item-image">
-            <img src="{{ product.image }}" width="100%" alt="">
+<div class="cart-item">
+    <div class="cart-item-container row">
+        <div class="cart-item-image col-sm-4">
+            <img width="100%" src="{{ product.smallImage }}" alt="">
         </div>
-        <div class="market-item-content">
-            <span class="market-item-title">{{ product.name }}</span>
-            <p>{{ product.description }}</p>
-            <div class="market-item-meta">
-                <span class="price">{{ product.price.convertToCurrentFormat() }} руб.</span>
+        <div class="cart-item-content col-sm-5">
+            <span class="cart-item-name">{{ product.name }}</span>
+
+            <div class="cart-item-tags">
+                <span class="tag">Для нескольких игроков</span>
+                <span class="tag">Шутер</span>
+                <span class="tag">Экшен</span>
             </div>
+
+            <div class="cart-item-details">
+                <span class="platform-img win"></span>
+                <span class="platform-img mac"></span>
+                <span class="platform-img linux"></span>
+            </div>
+        </div>
+        <div class="cart-item-meta col-sm-3">
+            <span class="price">{{ product.price.convertToCurrentFormat() }} руб.</span>
+            <button (click)="removeFromCartEvent()" class="btn btn-sm btn-default col-sm-12">Убрать</button>
         </div>
     </div>
 </div>

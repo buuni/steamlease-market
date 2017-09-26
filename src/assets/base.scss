@@ -1,7 +1,7 @@
 // Common
 @import "themes/base/styles/common/normalize";
-@import "themes/base/styles/common/vars";
 @import "themes/base/styles/common/colors";
+@import "themes/base/styles/common/vars";
 @import "themes/base/styles/common/fonts";
 @import "themes/base/styles/common/common";
 
@@ -14,3 +14,6 @@
 @import "themes/base/styles/blocks/cart";
 @import "themes/base/styles/blocks/loading-component";
 @import "themes/base/styles/blocks/app-component";
+
+// Template
+@import "themes/base/styles/common/templates/base";

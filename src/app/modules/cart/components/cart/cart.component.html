@@ -1,20 +1,21 @@
 <div class="cart-container">
 
-    <div class="cart-position">
-        <div *ngIf="isLoading; then loadingBlock else loadingBlock"></div>
-        <ng-template #loadedBlock>
-            <a href="#" class="cart-button"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+    <div *ngIf="isLoading; then loadingBlock else loadedBlock"></div>
+
+    <ng-template #loadedBlock>
+        <a routerLink="/cart" class="cart-button">
+            <i class="glyphicon glyphicon-shopping-cart"></i>
             <div *ngIf="products.length > 0; then thenBlock else elseBlock"></div>
             <ng-template #thenBlock>
-                <a routerLink="/cart">{{ products.length }} игры <span class="price">{{ totalSum }} руб.</span></a>
+                <p>{{ products.length }} игры <span class="price">{{ totalSum }} руб.</span></p>
             </ng-template>
             <ng-template #elseBlock>
-                    Корзина пустая
+                <p>Корзина пустая</p>
             </ng-template>
-        </ng-template>
+        </a>
+    </ng-template>
 
-        <ng-template #loadingBlock>
-            <loading-component [width]="28" [margin]="'0 10px'" [loadingText]="'Загрузка корзины ...'"></loading-component>
-        </ng-template>
-    </div>
+    <ng-template #loadingBlock>
+        <loading-component [type]="'small'" [width]="44" [margin]="'0 10px 0 0'" [loadingText]="'Загрузка корзины ...'"></loading-component>
+    </ng-template>
 </div>

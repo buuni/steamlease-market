@@ -1,19 +1,27 @@
-<div class="market-wrapper">
-    <div class="material-panel">
-        <div class="col-sm-12">
-            <div *ngIf="products.length > 0; then thenBlock else elseBlock"></div>
-            <ng-template #thenBlock>
-                <div class="row">
-                    <div *ngFor="let product of products">
-                        <cart-product [product]="product"></cart-product>
+<div class="market-wrapper col-sm-12">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="material-panel col-sm-12 cart-panel">
+                    <div class="cart-items-container col-sm-8">
+                        <div *ngIf="products.length > 0; then thenBlock else elseBlock"></div>
+                        <ng-template #thenBlock>
+                            <h2 class="title">Ваша корзина</h2>
+                            <div class="cart-product-wrapper right-border">
+                                <cart-product *ngFor="let product of products" [product]="product"></cart-product>
+                            </div>
+                        </ng-template>
+                        <ng-template #elseBlock>
+                            <h2 class="title">Ваша корзина пустая</h2>
+                            <div class="cart-product-wrapper right-border">
+                                <a routerLink="/market/all">Выберите у нас игру</a>
+                            </div>
+                        </ng-template>
+                    </div>
+                    <div class="col-sm-4">
+                        <h2 class="title">Оплата</h2>
                     </div>
                 </div>
-            </ng-template>
-            <ng-template #elseBlock>
-                <div class="row">
-                    Корзина пустая
-                </div>
-            </ng-template>
+            </div>
         </div>
-    </div>
+
 </div>

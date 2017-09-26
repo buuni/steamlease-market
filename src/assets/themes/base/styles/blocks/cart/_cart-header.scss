@@ -1,51 +1,94 @@
-.logo img {
-  padding: 20px 10px 20px 0;
-}
+.cart-header {
 
-.account {
-  float: left;
-  width: 48px;
-}
+	.header-container {
+		.header-navbar {
+			background: white;
+			-webkit-box-shadow: 0 0 2px 0 rgba(30, 38, 44, .25);
+			box-shadow: 0 0 2px 0 rgba(30, 38, 44, .25);
+			padding-left: 0;
 
-.account img {
-  width: 100%;
-  -webkit-box-shadow: 0 0 2px 0 rgba(30,38,44,.25);
-  box-shadow: 0 0 2px 0 rgba(30,38,44,.25);
-}
+			ul {
+				& > li {
+					&.active > a, & > a:hover {
+						color: $orange-color;
+						background-color: $light-blue-color;
+					}
 
-.cart-container {
-  font-family: 'Roboto', sans-serif;
-  background: #fff;
-  padding: 10px 20px;
-  width: 87.5%;
-  float: left;
-  -webkit-box-shadow: 0 0 2px 0 rgba(30,38,44,.25);
-  box-shadow: 0 0 2px 0 rgba(30,38,44,.25);
-}
+					& > a {
+						padding-top: 22px;
+						padding-bottom: 22px;
+						font-family: 'Roboto', Arial, sans-serif;
+						text-transform: uppercase;
+						color: #585858;
+						font-weight: bold;
+						border-right: $main-border;
+					}
+				}
+			}
+		}
+	}
 
-.cart-button {
-  font-size: 20px;
-  padding-right: 10px;
-  color: #f64a35;
-  float: left;
-}
+	.logo img {
+		padding: 20px 10px 20px 0;
+	}
 
-.cart-button:hover {
-  color: #d64a35;
-}
+	.account {
+		float: left;
+		padding: 0;
 
-.cart-position {
-  line-height: 2;
-}
+		a {
+			padding: 0 !important;
+		}
 
-.cart-position .price {
-  float: right;
-  display: inline;
-  font-size: 18px;
-  line-height: 1.5;
-}
+		img {
+			width: 100%;
+			-webkit-box-shadow: 0 0 2px 0 rgba(30, 38, 44, .25);
+			box-shadow: 0 0 2px 0 rgba(30, 38, 44, .25);
+		}
+	}
 
-.cart-position a {
-  color: #333;
-  text-decoration: none;
+	.cart-container {
+		font-family: 'Roboto', sans-serif;
+		background: #fff;
+		padding: 10px 20px;
+		float: left;
+		min-width: 240px;
+		height: 64px;
+
+		.cart-button {
+			font-size: 16px;
+			display: block;
+			margin-top: 7px;
+			color: #333;
+
+			i {
+				float: left;
+				margin-right: 10px;
+				color: #f64a35;
+				font-size: 24px;
+			}
+
+			&:hover {
+				i {
+					color: #d64a35;
+				}
+
+				p {
+					text-decoration: underline;
+				}
+			}
+
+			p {
+				line-height: 2;
+			}
+
+			.price {
+				float: right;
+				display: inline;
+				font-size: 20px;
+				line-height: 1.5;
+			}
+
+		}
+	}
 }

@@ -7,10 +7,10 @@ import {Data} from "@angular/router";
 @Injectable()
 export class CartService {
     private _products: Product[] = [];
-    private _totalLoadingProducts: number;
+    private _isLoadingCartProducts: boolean = true;
 
     get isLoadingCartProducts(): boolean {
-        return this._totalLoadingProducts !== 0;
+        return this._isLoadingCartProducts;
     }
 
     get products(): Product[] {
@@ -18,15 +18,25 @@ export class CartService {
     }
 
     constructor(private _cookieService: CookieService, private _productService: ProductService) {
-        let cookieProducts = this._cookiesProducts();
-        this._totalLoadingProducts = cookieProducts.length;
 
-        cookieProducts.forEach(id => {
-            _productService.loadProductById(id).then(product => {
-                this._totalLoadingProducts--;
-                this.addProduct(product);
+        let promise = new Promise((resolve, reject) => {
+            let cookieProducts = this._cookiesProducts();
+            let length = cookieProducts.length;
+
+            if(length === 0) {
+                resolve();
+            }
+
+            cookieProducts.forEach(id => {
+                _productService.loadProductById(id).then(product => {
+                    length--;
+                    this.addProduct(product);
+                    if(length === 0) {
+                        resolve();
+                    }
+                });
             });
-        });
+        }).then(() => this._isLoadingCartProducts = false);
     }
 
     addProduct(product: Product): void {
@@ -47,7 +57,7 @@ export class CartService {
     }
 
     totalSum(): Number {
-        return this._products.reduce<Number>((previousValue, next) => (previousValue as number) + next.price.value, 0);
+        return this._products.reduce<Number>((previousValue, next) => (previousValue as number) + (next.price.value / 100), 0);
     }
 
     inTheCart(product: Product) {

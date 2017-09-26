@@ -14,18 +14,18 @@
   }
 
   .genre-list li {
-    border-bottom: 1px solid #dce0e2;
+    border-bottom: $main-border;
     padding: 0 20px;
   }
 
   .genre-list li:first-child {
-    border-top: 1px solid #dce0e2;
+    border-top: $main-border;
   }
 
   .genre-list li:hover,
   .genre-list li.active
   {
-    background-color: #f7fbfa;
+    background-color: $light-blue-color;
   }
 
   .genre-list li a {

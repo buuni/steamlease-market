@@ -1,0 +1,103 @@
+.cart-panel {
+	padding: 20px;
+
+	.left-border {
+		border-left: $main-border;
+	}
+
+	.right-border {
+		border-right: $main-border;
+	}
+
+	& .title {
+		font-family: 'Roboto', sans-serif;
+		display: block;
+		margin-bottom: 20px;
+		font-weight: bold;
+		color: #333333;
+	}
+
+	.cart-items-container {
+
+		.cart-product {
+			.cart-item {
+				padding: 20px 10px;
+				border-bottom: $main-border;
+
+				/*&:hover {
+					background-color: $light-blue-color;
+					outline: $main-border;
+					border-bottom: 1px solid transparent;
+				}*/
+
+				.cart-item-content {
+					padding-left: 0;
+					.cart-item-details {
+						background: rgba(253, 28, 0, 0.46);
+						border-radius: 5px;
+						width: 30%;
+						padding: 3px 0 0 7px;
+						margin-top: 10px;
+
+						.platform-img {
+							display: inline-block;
+							width: 20px;
+							height: 20px;
+							background-repeat: no-repeat;
+
+							&.win {
+								background-image: url(http://store.steampowered.com/public/images/v6/icon_platform_win.png);
+							}
+
+							&.mac {
+								background-image: url(http://store.steampowered.com/public/images/v6/icon_platform_mac.png);
+							}
+
+							&.linux {
+								background-image: url(http://store.steampowered.com/public/images/v6/icon_platform_linux.png);
+							}
+						}
+					}
+
+					.cart-item-tags {
+						margin: 10px 0;
+
+						span.tag {
+							font-style: italic;
+							font-size: 12px;
+							color: #545454;
+
+							&:not(:last-child):after {
+								content: ', ';
+							}
+						}
+					}
+
+					.cart-item-name {
+						font-size: 18px;
+						font-family: 'Roboto', Arial, sans-serif;
+						font-weight: bold;
+						margin-bottom: 10px;
+					}
+				}
+
+				.cart-item-meta {
+					.price {
+						font-size: 24px;
+						font-family: 'Roboto', Arial, sans-serif;
+						font-weight: bold;
+						line-height: 3;
+						display: block;
+						text-align: center;
+					}
+				}
+
+			}
+
+			&:last-child .cart-item {
+				border-bottom: 0;
+				padding-bottom: 0;
+			}
+		}
+	}
+}

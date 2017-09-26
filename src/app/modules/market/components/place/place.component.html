@@ -1,7 +1,9 @@
 <div *ngIf="products.length && !isLoading; then thenBlock else elseBlock"></div>
 
 <ng-template #thenBlock>
-
+    <div class="row">
+        <market-place-pagination></market-place-pagination>
+    </div>
     <div class="row" *ngFor="let productsArray of products | buildArray:3">
         <market-place-product [product]="productsArray[0]"></market-place-product>
         <market-place-product *ngIf="productsArray[1]" [product]="productsArray[1]"></market-place-product>

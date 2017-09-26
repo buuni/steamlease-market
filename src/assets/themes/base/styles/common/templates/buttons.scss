@@ -1,0 +1,14 @@
+.btn {
+	border-radius: 0;
+
+	&.btn-success {
+		background-color: #f64a35;
+		border-color: #da3825;
+
+		&:hover {
+			background-color: #f62727;
+			border-color: #da3825;
+		}
+
+	}
+}

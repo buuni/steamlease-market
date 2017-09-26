@@ -16,25 +16,5 @@
     .forward {
       float: right;
     }
-
-    .btn-custom {
-      //border: 1px solid #e03a26;
-      background: #f64a35;
-      border-radius: 0;
-      color: #fff;
-    }
-
-    .backward a, .forward a {
-      padding: 7px 12px;
-      background: #f64a35;
-      color: white;
-      border: 1px solid #e03a26;
-      font-size: 12px;
-    }
-
-    .backward a:hover, .forward a:hover {
-      background: #c14533;
-      border: 1px solid #a82e1f;
-    }
   }
 }

@@ -1,5 +1,4 @@
 import {Price} from "./Price";
-import {el} from "@angular/platform-browser/testing/src/browser_util";
 
 export class Product {
 
@@ -11,6 +10,10 @@ export class Product {
 
     get image() : string {
         return 'http://cdn.akamai.steamstatic.com/steam/apps/' + this.steamId + '/header.jpg';
+    }
+
+    get smallImage() : string {
+        return 'http://cdn.akamai.steamstatic.com/steam/apps/' + this.steamId + '/capsule_231x87.jpg';
     }
 
     static fromJson(data: any) {

@@ -1,4 +1,4 @@
 <div class="row">
-    <img src="/assets/images/icons/loading-spinner.svg" alt="" [ngStyle]="{'width.px': width, 'margin': margin}">
+    <img src="/assets/images/icons/loading-spinner{{ type }}.svg" alt="" [ngStyle]="{'width.px': width, 'margin': margin}">
     <p *ngIf="loadingText.length">{{ loadingText }}</p>
 </div>
