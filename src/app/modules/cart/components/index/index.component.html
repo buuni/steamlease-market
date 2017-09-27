@@ -13,12 +13,13 @@
                         <ng-template #elseBlock>
                             <h2 class="title">Ваша корзина пустая</h2>
                             <div class="cart-product-wrapper right-border">
-                                <a routerLink="/market/all">Выберите у нас игру</a>
+                                <a routerLink="/all">Выберите у нас игру</a>
                             </div>
                         </ng-template>
                     </div>
                     <div class="col-sm-4">
                         <h2 class="title">Оплата</h2>
+                        <button class="btn btn-primary" (click)="testPayment()">Оплатить</button>
                     </div>
                 </div>
             </div>

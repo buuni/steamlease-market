@@ -8,15 +8,14 @@ import {IndexComponent} from "./modules/cart/components/index/index.component";
 
 
 const routes: Routes = [
-    { path: '', redirectTo: '/market/', pathMatch: 'full' },
+    { path: 'cart', component: IndexComponent },
     {
-        path: 'market',
+        path: '',
         component: MarketComponent,
         children: [
             {
                 path: '',
-                redirectTo: 'all',
-                pathMatch: 'full'
+                component: PlaceComponent,
             },
             {
                 path: ':genre',
@@ -24,7 +23,6 @@ const routes: Routes = [
             }
         ]
     },
-    { path: 'cart', component: IndexComponent },
     // {path: 'lazy', loadChildren: './modules/lazy/lazy.module#LazyModule'},
     // {path: 'lazy', component: LazyComponent},
     {path: '**', component: PageNotFoundComponent},

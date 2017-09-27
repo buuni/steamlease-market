@@ -9,6 +9,7 @@ import "rxjs/add/operator/map";
 import {Subject} from "rxjs/Subject";
 import {Subscription} from "rxjs/Subscription";
 import {privateDecrypt} from "crypto";
+import {ApiService} from "./api.service";
 
 @Injectable()
 export class ProductService {
@@ -16,20 +17,14 @@ export class ProductService {
 
     private _loadedProducts: Product[];
 
-    constructor(private _http: Http) {
+    constructor(private _http: Http, private _apiService: ApiService) {
         this._loadedProducts = [];
     }
 
     loadProductsByFilters(filterService: FilterService) : Promise<Product[]> {
-        return this._http.get(this._apiUrl + '/apps', {search: filterService.getSearchParams()})
-            .toPromise()
-            .then((res: Response) => {
-                return this._parseProducts(res.json() as Array<any>);
-            });
-    }
 
-    private _parseProducts(data: Array<any>) : Product[] {
-        return data.map(value => this._parseProduct(value));
+        return this._apiService.getProducts<Array<any>>({ search: filterService.getSearchParams() })
+            .then(data => this._parseProducts(data));
     }
 
     hasProductById(id: number) : boolean | Product {
@@ -43,9 +38,12 @@ export class ProductService {
             return Promise.resolve(product);
         }
 
-        return this._http.get(this._apiUrl + '/app/' + id)
-            .toPromise()
-            .then((res: Response) => this._parseProduct((res.json() as Array<any>)[0]));
+        return this._apiService.getProductById<Array<any>>(id)
+            .then(data => this._parseProduct(data[0]));
+    }
+
+    private _parseProducts(data: Array<any>) : Product[] {
+        return data.map(value => this._parseProduct(value));
     }
 
     private _parseProduct(data: any) : Product {

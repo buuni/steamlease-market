@@ -1,6 +1,8 @@
 ///<reference path="modules/market/market.module.ts"/>
 
 
+import {ApiService} from "./services/api.service";
+
 require("style-loader!../assets/base.scss");
 
 import {BrowserModule, HammerGestureConfig} from "@angular/platform-browser";
@@ -16,6 +18,7 @@ import {TruncatePipe} from "./pipes/truncate.pipe";
 import {BuildArrayPipe} from "./pipes/buildArray.pipe";
 import {CookieService} from "ngx-cookie-service";
 import {ProductService} from "./services/product.service";
+import {UserService} from "./services/user.service";
 
 
 export class MyHammerConfig extends HammerGestureConfig  {
@@ -38,7 +41,9 @@ export class MyHammerConfig extends HammerGestureConfig  {
     providers: [
         ProductService,
         CartService,
-        CookieService
+        CookieService,
+        ApiService,
+        UserService
     ],
     bootstrap: [
         AppComponent
