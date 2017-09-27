@@ -19,6 +19,8 @@ export class PlaceComponent implements OnInit, OnDestroy {
     private _subscriptionRouter: Subscription;
 
     constructor(private _filterService: FilterService, private _route: ActivatedRoute) {
+        _filterService.genre = 'all';
+
         this._subscriptionPerform = this._filterService.notifyPerform(() => {
             this.isLoading = true;
         });
@@ -30,12 +32,10 @@ export class PlaceComponent implements OnInit, OnDestroy {
             });
         });
 
-
-
         this._subscriptionRouter = this._route.paramMap
             .switchMap((params: ParamMap) => Promise.resolve(params.get('genre')))
             .subscribe(genre => {
-                this._filterService.genre = genre;
+                this._filterService.genre = genre || 'all';
                 this._filterService.perform();
             });
     }
