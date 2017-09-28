@@ -1,8 +1,10 @@
+<div *ngIf="isLoading; then loadingBlock else loadedBlock"></div>
 
+<ng-template #loadedBlock>
     <div *ngIf="isAuthorized; then authBlock else noAuthBlock"></div>
     <ng-template #authBlock>
         <a href="#">
-            <img src="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/0f/0f3d63766954e2153f6c8acaa71bc91a503f4725_medium.jpg">
+            <img src="{{ authorizedUser.avatar }}">
         </a>
     </ng-template>
     <ng-template #noAuthBlock>
@@ -10,3 +12,8 @@
             <img src="/assets/images/icons/steam-logo.svg" [ngStyle]="{width: '64px'}">
         </a>
     </ng-template>
+</ng-template>
+
+<ng-template #loadingBlock>
+    <loading-component [type]="'small'" [width]="64" [margin]="'0 15px 0 0'"></loading-component>
+</ng-template>

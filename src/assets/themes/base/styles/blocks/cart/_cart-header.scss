@@ -38,12 +38,10 @@
 
 		a {
 			padding: 0 !important;
-		}
 
-		img {
-			width: 100%;
-			-webkit-box-shadow: 0 0 2px 0 rgba(30, 38, 44, .25);
-			box-shadow: 0 0 2px 0 rgba(30, 38, 44, .25);
+			& > img {
+				width: 64px;
+			}
 		}
 	}
 

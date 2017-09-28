@@ -7,6 +7,11 @@ import {User} from "../models/User";
 export class UserService {
 
     private _authorizedUser?: User;
+    private _isLoadingAuthorizedUser: boolean = true;
+
+    get isLoadingAuthorizedUser(): boolean {
+        return this._isLoadingAuthorizedUser;
+    }
 
     get isAuthorized(): boolean {
         return !!this._authorizedUser;
@@ -18,8 +23,10 @@ export class UserService {
 
     constructor(private _apiService: ApiService) {
         this._apiService.getAuthorizedUser<Array<any>>()
-            .then(data => this._authorizedUser = User.fromJson(data))
-            .catch(data => console.log(data));
+            .then(data => {
+                this._isLoadingAuthorizedUser = false;
+                this._authorizedUser = User.fromJson(data);
+            }).catch(() => this._isLoadingAuthorizedUser = false);
     }
 
 }

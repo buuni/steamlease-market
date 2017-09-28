@@ -9,16 +9,19 @@ import {ProductComponent} from "./components/index/components/product/product.co
 import {TruncatePipe} from "../../pipes/truncate.pipe";
 import {BuildArrayPipe} from "../../pipes/buildArray.pipe";
 import {AccountComponent} from "./components/header/components/account/account.component";
+import {PaymentComponent} from "./components/index/components/payment/payment.component";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
-    imports: [SharedModule, RouterModule],
+    imports: [SharedModule, RouterModule, FormsModule],
     exports: [HeaderComponent],
     declarations: [
         HeaderComponent,
         CartComponent,
         IndexComponent,
         ProductComponent,
-        AccountComponent
+        AccountComponent,
+        PaymentComponent
     ],
     providers: [FilterService]
 })

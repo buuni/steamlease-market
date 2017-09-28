@@ -5,7 +5,7 @@ export const proxy = {
         "changeOrigin": true,
         "logLevel": "debug"
     },
-    "/*": {
+    "/web/*": {
         "target": "http://steamlease.dev/",
         "secure": true,
         "changeOrigin": true,

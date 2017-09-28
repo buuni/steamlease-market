@@ -18,6 +18,10 @@ export class AccountComponent implements OnInit {
         return this._userService.isAuthorized;
     }
 
+    get isLoading() : boolean {
+        return this._userService.isLoadingAuthorizedUser;
+    }
+
     constructor(private _userService: UserService) {
 
     }

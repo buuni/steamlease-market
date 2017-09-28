@@ -23,7 +23,7 @@ export class ProductService {
 
     loadProductsByFilters(filterService: FilterService) : Promise<Product[]> {
 
-        return this._apiService.getProducts<Array<any>>({ search: filterService.getSearchParams() })
+        return this._apiService.getProducts<Array<any>>(filterService.getSearchParams())
             .then(data => this._parseProducts(data));
     }
 

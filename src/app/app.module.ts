@@ -19,6 +19,8 @@ import {BuildArrayPipe} from "./pipes/buildArray.pipe";
 import {CookieService} from "ngx-cookie-service";
 import {ProductService} from "./services/product.service";
 import {UserService} from "./services/user.service";
+import {FormsModule} from "@angular/forms";
+import {PaymentService} from "./services/payment.service";
 
 
 export class MyHammerConfig extends HammerGestureConfig  {
@@ -36,14 +38,16 @@ export class MyHammerConfig extends HammerGestureConfig  {
         MarketModule,
         CartModule,
         NgRoutingModule,
-        HttpModule
+        HttpModule,
+        FormsModule
     ],
     providers: [
         ProductService,
         CartService,
         CookieService,
         ApiService,
-        UserService
+        UserService,
+        PaymentService
     ],
     bootstrap: [
         AppComponent
