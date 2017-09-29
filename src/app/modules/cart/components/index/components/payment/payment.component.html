@@ -1,4 +1,11 @@
 <form>
     <p>В вашей корзине {{ totalCount }} товаров на сумму {{ totalSum }} рублей.</p>
     <button class="btn btn-primary" (click)="buildPaymentForm()">Продолжить оплату</button>
+    <form ngNoForm method="post" #paymentForm action="https://pay.gamemoney.com/terminal/">
+        <input type="hidden" name="project">
+        <input type="hidden" name="user">
+        <input type="hidden" name="signature">
+        <input type="hidden" name="amount">
+        <input type="hidden" name="project_invoice">
+    </form>
 </form>

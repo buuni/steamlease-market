@@ -1,4 +1,4 @@
-import {Component, HostBinding, Input, OnInit} from "@angular/core";
+import {Component, ElementRef, HostBinding, Input, OnInit, ViewChild} from "@angular/core";
 import {Product} from "../../../../../../models/market/Product";
 import {CartService} from "../../../../../../services/cart.service";
 import {PaymentService} from "../../../../../../services/payment.service";
@@ -9,6 +9,11 @@ import {PaymentService} from "../../../../../../services/payment.service";
 })
 export class PaymentComponent implements OnInit {
     @HostBinding('class') classes = 'cart-payment';
+    @ViewChild('paymentForm') form: ElementRef;
+
+    get sign(): any {
+        return this._sign;
+    }
 
     get totalCount() : number {
         return this._cartService.products.length;
@@ -18,13 +23,28 @@ export class PaymentComponent implements OnInit {
         return this._cartService.totalSum();
     }
 
-    constructor(private _cartService: CartService, private _paymentService: PaymentService) {
+    private _sign?:any;
 
+    constructor(private _cartService: CartService, private _paymentService: PaymentService) {
     }
 
     buildPaymentForm() {
-        this._paymentService.buildPayment(this._cartService.products);
+        return this._paymentService.buildPayment(this._cartService.products)
+            .then(data => {
+                this._sign = data;
+                const form = this.form.nativeElement;
+
+                form.target = '_blank';
+                form.children.project.value  = data['project'];
+                form.children.user.value  = data['user'];
+                form.children.amount.value  = data['amount'];
+                form.children.project_invoice.value  = data['project_invoice'];
+                form.children.signature.value  = data['signature'];
+
+                return form;
+            }).then(form => form.submit());
     }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+    }
 }

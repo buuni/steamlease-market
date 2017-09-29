@@ -1,24 +1,12 @@
 import {Injectable} from "@angular/core";
 import {ApiService} from "./api.service";
-import {User} from "../models/User";
-import {UserService} from "./user.service";
-import {CartService} from "./cart.service";
 import {Product} from "../models/market/Product";
 
 
 @Injectable()
 export class PaymentService {
 
-    private _userId: number;
-    private _invoiceId: number;
-    private _projectId: number;
-    private _amount: number;
-    private _signature: string;
-
-    constructor(private _apiService: ApiService, private _userService: UserService, private _cartService: CartService) {
-        // this._userId = this._userService.authorizedUser.id;
-        this._userId = 1;
-    }
+    constructor(private _apiService: ApiService) {}
 
     buildPayment(products: Product[]) {
 
@@ -26,7 +14,10 @@ export class PaymentService {
             products: products.map(product => product.id)
         };
 
-        this._apiService.signPayment(paymentData)
-            .then(data => console.log(data));
+        return this._apiService.signPayment<Array<any>>(paymentData)
+            .then(data => {
+                console.log(data);
+                return data;
+            });
     }
 }
