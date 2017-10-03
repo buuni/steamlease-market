@@ -1,4 +1,5 @@
 "use strict";
+const proxy = require("./proxy.config");
 
 const path = require('path');
 const fs = require('fs');
@@ -201,14 +202,7 @@ module.exports = function makeWebpackConfig() {
         allowedHosts: [
             'steamlease.dev'
         ],
-        proxy: {
-            "/api": {
-                "target": "http://steamlease.dev/",
-                "secure": false,
-                "changeOrigin": true,
-                "logLevel": "debug"
-            }
-        },
+        proxy: proxy,
         historyApiFallback: true,
         compress: true,
         quiet: false,

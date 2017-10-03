@@ -1,14 +1,20 @@
-export const proxy = {
-    "/api/*": {
-        "target": "http://steamlease.dev/api/",
-        "secure": true,
-        "changeOrigin": true,
-        "logLevel": "debug"
-    },
-    "/web/*": {
+module.exports = {
+    "/api": {
         "target": "http://steamlease.dev/",
         "secure": true,
         "changeOrigin": true,
         "logLevel": "debug"
-    }
+    },
+    "/user/profile": {
+        "target": "http://steamlease.dev/",
+        "secure": true,
+        "changeOrigin": true,
+        "logLevel": "debug"
+    },
+    "/payment": {
+        "target": "http://steamlease.dev/",
+        "secure": true,
+        "changeOrigin": true,
+        "logLevel": "debug"
+    },
 };

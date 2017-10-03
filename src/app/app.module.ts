@@ -21,6 +21,7 @@ import {ProductService} from "./services/product.service";
 import {UserService} from "./services/user.service";
 import {FormsModule} from "@angular/forms";
 import {PaymentService} from "./services/payment.service";
+import {ProfileModule} from "./modules/profile/profile.module";
 
 
 export class MyHammerConfig extends HammerGestureConfig  {
@@ -38,6 +39,7 @@ export class MyHammerConfig extends HammerGestureConfig  {
         MarketModule,
         CartModule,
         NgRoutingModule,
+        ProfileModule,
         HttpModule,
         FormsModule
     ],

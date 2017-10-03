@@ -5,10 +5,30 @@ import {MarketComponent} from "./modules/market/components/market/market.compone
 import {PlaceComponent} from "./modules/market/components/place/place.component";
 import {MenuComponent} from "./modules/market/components/menu/menu.component";
 import {IndexComponent} from "./modules/cart/components/index/index.component";
+import {ProfileComponent} from "./modules/profile/components/profile/profile.component";
+import {UserInfoComponent} from "./modules/profile/components/profile/components/user-info/user-info.component";
+import {InvoicesComponent} from "./modules/profile/components/profile/components/invoices/invoices.component";
 
 
 const routes: Routes = [
-    { path: 'cart', component: IndexComponent },
+    {
+        path: 'cart',
+        component: IndexComponent
+    },
+    {
+        path: 'profile',
+        component: ProfileComponent,
+        children: [
+            {
+                path: '',
+                component: UserInfoComponent
+            },
+            {
+                path: 'invoices',
+                component: InvoicesComponent
+            }
+        ]
+    },
     {
         path: '',
         component: MarketComponent,

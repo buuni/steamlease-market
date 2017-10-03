@@ -5,8 +5,9 @@ import {Product} from "../models/market/Product";
 
 const PRODUCTS = '/api/apps/';
 const PRODUCT = '/api/app/';
-const AUTHORIZED_USER = '/user/';
+const AUTHORIZED_USER = '/user/profile/info/';
 const SIGN_PAYMENT = '/payment/sign/';
+const USER_INVOICES = '/user/profile/invoices/';
 
 @Injectable()
 export class ApiService {
@@ -33,6 +34,10 @@ export class ApiService {
 
     getAuthorizedUser<T = any>(options: any = null) : Promise<T> {
         return this.buildPromise<T>(RequestMethod.Get, AUTHORIZED_USER, options);
+    }
+
+    getUserInvoices<T = any>() : Promise<T> {
+        return this.buildPromise<T>(RequestMethod.Get, USER_INVOICES);
     }
 
     signPayment<T = any>(paymentData: any) {
