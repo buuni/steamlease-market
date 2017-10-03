@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {ApiService} from "./api.service";
-import {Product} from "../models/market/Product";
+import {CartProduct} from "../models/market/CartProduct";
 
 
 @Injectable()
@@ -8,10 +8,15 @@ export class PaymentService {
 
     constructor(private _apiService: ApiService) {}
 
-    buildPayment(products: Product[]) {
+    buildPayment(cartProducts: CartProduct[]) {
+        const products = {};
+
+        cartProducts.forEach(product => {
+            products[product.id] = product.days;
+        });
 
         const paymentData = {
-            products: products.map(product => product.id)
+            products: products
         };
 
         return this._apiService.signPayment<Array<any>>(paymentData)

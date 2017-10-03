@@ -2,6 +2,7 @@ import {Component, ElementRef, HostBinding, Input, OnInit, ViewChild} from "@ang
 import {Product} from "../../../../../../models/market/Product";
 import {CartService} from "../../../../../../services/cart.service";
 import {PaymentService} from "../../../../../../services/payment.service";
+import {CartProduct} from "../../../../../../models/market/CartProduct";
 
 @Component({
     selector: 'cart-payment',
@@ -29,7 +30,15 @@ export class PaymentComponent implements OnInit {
     }
 
     buildPaymentForm() {
-        return this._paymentService.buildPayment(this._cartService.products)
+
+        const products: CartProduct[] = [];
+        this._cartService.products.forEach((item: Product) => {
+            let cp = new CartProduct(item);
+            cp.days = 3;
+            products.push(cp);
+        });
+
+        return this._paymentService.buildPayment(products)
             .then(data => {
                 this._sign = data;
                 const form = this.form.nativeElement;

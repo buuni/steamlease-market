@@ -3,6 +3,7 @@ import {Product} from "../models/market/Product";
 import {CookieService} from "ngx-cookie-service";
 import {ProductService} from "./product.service";
 import {Data} from "@angular/router";
+import {ProductInterface} from "../models/market/ProductInterface";
 
 @Injectable()
 export class CartService {
