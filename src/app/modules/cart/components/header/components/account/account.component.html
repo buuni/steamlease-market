@@ -3,7 +3,7 @@
 <ng-template #loadedBlock>
     <div *ngIf="isAuthorized; then authBlock else noAuthBlock"></div>
     <ng-template #authBlock>
-        <a href="#">
+        <a routerLink="/profile/invoices">
             <img src="{{ authorizedUser.avatar }}">
         </a>
     </ng-template>

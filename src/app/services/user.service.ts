@@ -2,8 +2,10 @@ import {Injectable} from "@angular/core";
 import {ApiService} from "./api.service";
 import {User} from "../models/User";
 import {UserInterface} from "../models/Interfaces/UserInterface";
-import {ProxyUser} from "../models/ProxyUser";
 import {InvoiceInterface} from "../models/Interfaces/InvoiceInterface";
+import {Invoice} from "../models/Invoice";
+import {ProductService} from "./product.service";
+import {Product} from "../models/market/Product";
 
 
 @Injectable()
@@ -33,15 +35,20 @@ export class UserService {
         this._authorizedUser = value;
     }
 
-    constructor(private _apiService: ApiService) {
+    constructor(private _apiService: ApiService, private _productsService: ProductService) {
         this._loadingProcess = this._apiService.getAuthorizedUser<Array<any>>()
             .then(data => {
                 this._isLoadingAuthorizedUser = false;
-                this._authorizedUser = new ProxyUser(
-                    User.fromJson(data),
-                    this._apiService.getUserInvoices.bind(this._apiService),
-                    this._apiService.getProductById.bind(this._apiService)
-                );
+                this._authorizedUser = User.fromJson(data);
+                this.authorizedUser.invoices = this._apiService.getUserInvoices<Array<any>>().then(array => {
+                    return array.map(item => {
+                        const invoice = Invoice.fromJson(item);
+                        invoice.products = item.products.map(pr => {
+                            return this._productsService.loadProductById(pr.id);
+                        });
+                        return invoice;
+                    });
+                });
                 return true;
             }).catch(() => this._isLoadingAuthorizedUser = false);
     }

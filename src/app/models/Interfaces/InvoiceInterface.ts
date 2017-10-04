@@ -6,7 +6,8 @@ export interface InvoiceInterface {
     createdDate: string,
     paidAmount?: number,
     paidDate?: string,
-    products: Promise<ProductInterface[]>,
-    productsId: Promise<any>,
+    products: Promise<Promise<ProductInterface>[]>,
     status: string;
+
+    statusText:string;
 }

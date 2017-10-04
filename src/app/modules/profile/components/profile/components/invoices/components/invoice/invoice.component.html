@@ -1,0 +1,8 @@
+<div class="col-sm-4">
+    <div class="material-panel" [ngStyle]="{padding: '20px', 'margin-bottom': '20px'}">
+        <div class="invoice-id">Номер заказа #{{ invoice.id }}</div>
+        <div class="invoice-status">Статус: {{ invoice.statusText.toLowerCase() }}</div>
+        <div class="invoice-amount">Стоимость: {{ invoice.amount / 100 }} руб.</div>
+        <div class="invoice-date">Дата: {{ invoice.createdDate }}</div>
+    </div>
+</div>

@@ -7,10 +7,18 @@ export class Invoice implements InvoiceInterface {
     createdDate: string;
     paidAmount?: number;
     paidDate?: string;
-    products: Promise<ProductInterface[]>;
-    productsId: Promise<any>;
+    products: Promise<Promise<ProductInterface>[]>;
     status: string;
 
+    get statusText():string {
+        switch (this.status) {
+            case 'confirmed': return 'Счет выставлен';
+            case 'paid': return 'Оплачен';
+            case 'canceled': return 'Отменен';
+            case 'refunded': return 'Возврат средств';
+            case 'processing': return 'Обработка заказа';
+        }
+    }
 
     static fromJson(data: any) : InvoiceInterface {
         const invoice: InvoiceInterface = new Invoice();
@@ -22,7 +30,6 @@ export class Invoice implements InvoiceInterface {
         invoice.paidAmount = data.paid_amount;
         invoice.paidDate = data.paid_at;
         invoice.status = data.status;
-        invoice.productsId = Promise.resolve(data.products);
 
         return invoice;
     }

@@ -1,3 +1,12 @@
 <div class="market-wrapper">
-
+    <div *ngIf="isLoading; then loadingBlock else loadedBlock"></div>
+    <ng-template #loadedBlock>
+        <div class="row invoices-block">
+            <h2 class="title">Ваши заказы</h2>
+            <profile-invoices-item *ngFor="let invoice of invoices" [invoice]="invoice"></profile-invoices-item>
+        </div>
+    </ng-template>
+    <ng-template #loadingBlock>
+        <loading-component></loading-component>
+    </ng-template>
 </div>

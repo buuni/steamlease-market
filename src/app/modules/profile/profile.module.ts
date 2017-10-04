@@ -7,6 +7,7 @@ import {ApiService} from "../../services/api.service";
 import {ProfileComponent} from "./components/profile/profile.component";
 import {UserInfoComponent} from "./components/profile/components/user-info/user-info.component";
 import {InvoicesComponent} from "./components/profile/components/invoices/invoices.component";
+import {InvoiceItemComponent} from "./components/profile/components/invoices/components/invoice/invoice.component";
 
 @NgModule({
     imports: [SharedModule, RouterModule, FormsModule],
@@ -14,7 +15,8 @@ import {InvoicesComponent} from "./components/profile/components/invoices/invoic
     declarations: [
         ProfileComponent,
         UserInfoComponent,
-        InvoicesComponent
+        InvoicesComponent,
+        InvoiceItemComponent
     ],
     providers: [FilterService]
 })
