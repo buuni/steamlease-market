@@ -1,0 +1,36 @@
+<div class="col-sm-4 profile-game-item-container">
+    <div class="game-item material-panel">
+        <div class="game-item-image">
+            <img src="{{ bot.product?.image }}" width="100%" alt="">
+        </div>
+        <div class="game-item-content">
+            <span class="game-item-title">{{ bot.product?.name }}</span>
+            <ul>
+                <li><span>Логин: </span>{{ bot.login }}</li>
+                <li>
+                    <span>Пароль: </span>{{ password }}
+                    <button class="btn btn-transparent btn-xs">
+                        <span class="glyphicon" [ngClass]="{'glyphicon-eye-close': !passwordHide, 'glyphicon-eye-open': passwordHide}" (click)="passwordHide = !passwordHide"></span>
+                    </button>
+                </li>
+                <li><span>Осталось дней: </span>2</li>
+            </ul>
+        </div>
+        <div class="game-item-meta">
+            <span class="guard">
+                <div class="code">
+                    <div *ngIf="guardLoading; then guardLoadingBlock else guardLoadedBlock"></div>
+                    <ng-template #guardLoadedBlock>
+                        {{ steamGuard }}
+                    </ng-template>
+                    <ng-template #guardLoadingBlock>
+                        <loading-component [type]="'small'" [width]="30" [margin]="'0px 0px 0px 35px'"></loading-component>
+                    </ng-template>
+                </div>
+                <button type="button" class="btn btn-default btn-sm" (click)="refreshSteamGuard()">
+                    <span class="glyphicon glyphicon-refresh"></span> Guard
+                </button>
+            </span>
+        </div>
+    </div>
+</div>

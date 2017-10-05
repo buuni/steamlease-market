@@ -8,6 +8,8 @@ const PRODUCT = '/api/app/';
 const AUTHORIZED_USER = '/user/profile/info/';
 const SIGN_PAYMENT = '/payment/sign/';
 const USER_INVOICES = '/user/profile/invoices/';
+const USER_GAMES = '/user/profile/games/';
+const REFRESH_STEAM_GUARD = '/games/guard';
 
 @Injectable()
 export class ApiService {
@@ -38,6 +40,14 @@ export class ApiService {
 
     getUserInvoices<T = any>() : Promise<T> {
         return this.buildPromise<T>(RequestMethod.Get, USER_INVOICES);
+    }
+
+    getUserActiveGames<T = any>() : Promise<T> {
+        return this.buildPromise<T>(RequestMethod.Get, USER_GAMES);
+    }
+
+    getSteamGuard<T = any>(id: number) : Promise<T> {
+        return this.buildPromise<T>(RequestMethod.Post, REFRESH_STEAM_GUARD, { body: JSON.stringify({id: id}) });
     }
 
     signPayment<T = any>(paymentData: any) {

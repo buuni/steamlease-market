@@ -1,0 +1,12 @@
+<div class="market-wrapper">
+    <div *ngIf="isLoading; then loadingBlock else loadedBlock"></div>
+    <ng-template #loadedBlock>
+        <div class="row games-block">
+            <h2 class="title">Ваши игры</h2>
+            <profile-games-item *ngFor="let bot of bots" [bot]="bot"></profile-games-item>
+        </div>
+    </ng-template>
+    <ng-template #loadingBlock>
+        <loading-component></loading-component>
+    </ng-template>
+</div>

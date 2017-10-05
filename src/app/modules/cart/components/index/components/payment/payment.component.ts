@@ -3,6 +3,7 @@ import {Product} from "../../../../../../models/market/Product";
 import {CartService} from "../../../../../../services/cart.service";
 import {PaymentService} from "../../../../../../services/payment.service";
 import {CartProduct} from "../../../../../../models/market/CartProduct";
+import {UserService} from "../../../../../../services/user.service";
 
 @Component({
     selector: 'cart-payment',
@@ -24,9 +25,13 @@ export class PaymentComponent implements OnInit {
         return this._cartService.totalSum();
     }
 
+    get isAuthorized():boolean {
+        return this._userService.isAuthorized;
+    }
+
     private _sign?:any;
 
-    constructor(private _cartService: CartService, private _paymentService: PaymentService) {
+    constructor(private _cartService: CartService, private _paymentService: PaymentService, private _userService: UserService) {
     }
 
     buildPaymentForm() {
@@ -38,7 +43,7 @@ export class PaymentComponent implements OnInit {
             products.push(cp);
         });
 
-        return this._paymentService.buildPayment(products)
+        this._paymentService.buildPayment(products)
             .then(data => {
                 this._sign = data;
                 const form = this.form.nativeElement;

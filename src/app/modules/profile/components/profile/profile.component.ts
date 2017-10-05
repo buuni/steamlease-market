@@ -17,8 +17,6 @@ export class ProfileComponent implements OnInit {
             if(!result) {
                 return this._router.navigateByUrl('/');
             }
-
-            console.log(this._userService.authorizedUser);
         });
     }
 }

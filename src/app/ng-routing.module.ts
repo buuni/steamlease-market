@@ -3,11 +3,11 @@ import {NgModule} from "@angular/core";
 import {PageNotFoundComponent} from "./modules/shared/components/page-not-found/page-not-found.component";
 import {MarketComponent} from "./modules/market/components/market/market.component";
 import {PlaceComponent} from "./modules/market/components/place/place.component";
-import {MenuComponent} from "./modules/market/components/menu/menu.component";
 import {IndexComponent} from "./modules/cart/components/index/index.component";
 import {ProfileComponent} from "./modules/profile/components/profile/profile.component";
 import {UserInfoComponent} from "./modules/profile/components/profile/components/user-info/user-info.component";
 import {InvoicesComponent} from "./modules/profile/components/profile/components/invoices/invoices.component";
+import {GamesComponent} from "./modules/profile/components/profile/components/games/games.component";
 
 
 const routes: Routes = [
@@ -26,6 +26,10 @@ const routes: Routes = [
             {
                 path: 'invoices',
                 component: InvoicesComponent
+            },
+            {
+                path: 'games',
+                component: GamesComponent
             }
         ]
     },

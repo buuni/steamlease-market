@@ -1,0 +1,70 @@
+.profile-games-component {
+	.games-block {
+		& > .title {
+			font-family: 'Roboto', sans-serif;
+			display: block;
+			margin-bottom: 20px;
+			margin-left: 10px;
+			font-weight: bold;
+			color: #333333;
+		}
+	}
+
+	.profile-games-item {
+
+		.game-item-content {
+
+			font-size: 14px;
+
+			.game-item-title {
+				font-family: 'Roboto', sans-serif;
+				font-size: 16px;
+				font-weight: bold;
+				margin-bottom: 2px;
+				width: 100%;
+				display: block;
+				padding: 7px 20px;
+			}
+
+			ul {
+				list-style: none;
+
+				li {
+					border-bottom: $main-border;
+					padding: 4px 20px;
+					text-align: right;
+
+					span {
+						display: inline;
+						float: left;
+						font-weight: bold;
+					}
+				}
+
+				li:last-child {
+					border-bottom: none;
+				}
+			}
+		}
+
+		.game-item-meta {
+			border-top: $main-border;
+			padding: 10px 20px 42px 20px;
+			margin-bottom: 20px;
+
+			.guard {
+				font-size: 22px;
+
+				.code {
+					height: 30px;
+					float: left;
+				}
+			}
+		}
+
+		.btn {
+			float: right;
+		}
+
+	}
+}
