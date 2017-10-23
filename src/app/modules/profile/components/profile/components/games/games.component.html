@@ -3,7 +3,15 @@
     <ng-template #loadedBlock>
         <div class="row games-block">
             <h2 class="title">Ваши игры</h2>
-            <profile-games-item *ngFor="let bot of bots" [bot]="bot"></profile-games-item>
+
+            <div *ngIf="bots.length > 0">
+                <profile-games-item *ngFor="let bot of bots" [bot]="bot"></profile-games-item>
+            </div>
+
+            <div *ngIf="bots.length === 0">
+                <p>У вас нет арендованных игр, <a routerLink="/all">купите ее прямо сейчас</a></p>
+            </div>
+
         </div>
     </ng-template>
     <ng-template #loadingBlock>

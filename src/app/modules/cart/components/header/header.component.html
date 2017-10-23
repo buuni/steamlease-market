@@ -16,8 +16,8 @@
                 <div id="navbar" class="navbar-collapse collapse header-navbar">
                     <ul class="nav navbar-nav">
                         <li routerLinkActive="active"><a routerLink="/all">Главная</a></li>
-                        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/profile">Профиль</a></li>
-                        <li routerLinkActive="active"><a routerLink="/profile/games">Мои игры</a></li>
+                        <li *ngIf="isAuthorized" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/profile">Профиль</a></li>
+                        <li *ngIf="isAuthorized" routerLinkActive="active"><a routerLink="/profile/games">Мои игры</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li>
